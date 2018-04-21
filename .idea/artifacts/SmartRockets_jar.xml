@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SmartRockets:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SmartRockets_jar</output-path>
+    <root id="archive" name="SmartRockets.jar">
+      <element id="module-output" name="SmartRockets" />
+    </root>
+  </artifact>
+</component>
