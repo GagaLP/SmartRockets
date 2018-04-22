@@ -2,6 +2,8 @@ package SmartRocketProg.Genetic;
 
 import SmartRocketProg.MovingGrafics.Vector2D;
 
+import java.util.SplittableRandom;
+
 /**
  * Created by gabriel on 01.12.16.
  */
@@ -10,6 +12,7 @@ public class DNA {
     private static int count = 0;
     private static double mutationrate = 0.01;
     private static int dnaLength = 400;
+    private SplittableRandom random = new SplittableRandom();
 
     public DNA(){
         genes = new Vector2D[dnaLength];
@@ -49,7 +52,7 @@ public class DNA {
 
     public DNA crosover(DNA dna){
         Vector2D newGenes[] = new Vector2D[dnaLength];
-        int mid = (int)Math.floor(Math.random() * dnaLength);
+        int mid = (int)Math.floor(random.nextDouble() * dnaLength);
 
         for (int i = 0; i < dnaLength; i++) {
             if (mid < i){
@@ -63,7 +66,7 @@ public class DNA {
 
     public void mutation(){
         for (int i = 0; i < dnaLength; i++) {
-            if (Math.random() < mutationrate){
+            if (random.nextDouble() < mutationrate){
                 genes[i] = new Vector2D(1);
                 genes[i].limit(0.2);
             }

@@ -8,6 +8,7 @@ import SmartRocketProg.Objects.Target;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.SplittableRandom;
 
 /**
  * Created by gabriel on 01.12.16.
@@ -19,6 +20,7 @@ public class Population {
     private double maxfit;
     private double gesFitness;
     private static int maxRokets = 100;
+    private SplittableRandom random = new SplittableRandom();
 
     public Population(MovingGraficsScreen movingGraficsScreen) {
         for (int i = 0; i < maxRokets; i++) {
@@ -37,13 +39,20 @@ public class Population {
     private void evaluate(Target target){
         maxfit = 0;
         gesFitness = 0;
+        int bestArrived = DNA.getDnaLength();
 
-        rockets.forEach(rocketsElement -> {
-            if (target.checkIfCollided(rocketsElement)) {
-                rocketsElement.setCompleted(true);
+        for (Rockets rocket: rockets) {
+            if (target.checkIfCollided(rocket)) {
+                rocket.setCompleted(true);
+                if (rocket.getArrived() < bestArrived){
+                    bestArrived = rocket.getArrived();
+                }
             }
-            rocketsElement.calcfitness(target);
-        });
+        }
+
+        for (Rockets rocket : rockets) {
+            rocket.calcfitness(target, bestArrived);
+        }
 
         rockets.forEach(rocketsElement -> {
             if (rocketsElement.getFitness() > maxfit) {
@@ -73,10 +82,10 @@ public class Population {
     }
 
     private DNA getParentDNA(){
-        double random = Math.random() * gesFitness;
+        double randNr = random.nextDouble() * gesFitness;
         int index = 0;
-        while (random >= 0){
-            random -= rockets.get(index).getFitness();
+        while (randNr >= 0){
+            randNr -= rockets.get(index).getFitness();
             index++;
         }
         return rockets.get(index - 1).getDna();

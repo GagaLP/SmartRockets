@@ -17,6 +17,7 @@ public class Rockets extends Sprite {
     private boolean completed = false;
     private double fitness = 0;
     private DNA dna;
+    private int arrived = 0;
 
     public Rockets(int width, int height){
         super(width, height);
@@ -71,13 +72,22 @@ public class Rockets extends Sprite {
         completed = false;
     }
 
-    public void calcfitness(Sprite target){
+    public void calcfitness(Sprite target, int bestArrived){
         fitness = 1 / calcDist(target);
         if (completed){
             fitness *= 10;
+            fitness *= 10 / ((arrived - bestArrived) + 1);
         }else if(stuck){
             fitness /= 25;
         }
+    }
+
+    public int getArrived() {
+        return arrived;
+    }
+
+    public void setArrived(int arrived) {
+        this.arrived = arrived;
     }
 
     @Override public Node createView() {

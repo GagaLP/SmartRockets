@@ -5,6 +5,7 @@ import SmartRocketProg.Exeptions.NumberFormatExeptionDouble;
 import SmartRocketProg.Exeptions.NumberFormatExeptionInt;
 import SmartRocketProg.Genetic.DNA;
 import SmartRocketProg.Genetic.Population;
+import SmartRocketProg.Genetic.PopulationArray;
 import SmartRocketProg.MovingGrafics.MovingGraficsScreen;
 import SmartRocketProg.Objects.Obstacles;
 import SmartRocketProg.Objects.Target;
@@ -26,7 +27,8 @@ public class BasicOpsTest extends Application {
 
     private MovingGraficsScreen movingGraficsScreen;
     private Status status = Status.STARTED;
-    private Population pop;
+//    private Population pop;
+    private PopulationArray pop;
     private Target targ;
     private Obstacles obstacles[] = new Obstacles[3];
     private Menue menuePane;
@@ -57,7 +59,8 @@ public class BasicOpsTest extends Application {
         stage.setScene(movingGraficsScreen);
         stage.show();
 
-        pop = new Population(movingGraficsScreen);
+//        pop = new Population(movingGraficsScreen);
+        pop = new PopulationArray(movingGraficsScreen);
         targ = new Target(movingGraficsScreen);
         obstacles[0] = new Obstacles(movingGraficsScreen, 350, 20, 300, 300);
         obstacles[1] = new Obstacles(movingGraficsScreen, 100, 20, 500, 400);
@@ -79,9 +82,11 @@ public class BasicOpsTest extends Application {
 
     public void setNumbers(){
         try {
-            Population.setMaxRokets(menuePane.getMaxRocketsTxtFld());
+//            Population.setMaxRokets(menuePane.getMaxRocketsTxtFld());
+            PopulationArray.setMaxRokets(menuePane.getMaxRocketsTxtFld());
         }catch (NumberFormatExeptionInt e){
-            Population.setMaxRokets(100);
+//            Population.setMaxRokets(100);
+            PopulationArray.setMaxRokets(100);
         }
 
         try {
@@ -106,9 +111,11 @@ public class BasicOpsTest extends Application {
 
     private void setOptions(){
         try {
-            Population.setMaxRokets(optionPane.getMaxRocketsTxtFld());
+//            Population.setMaxRokets(optionPane.getMaxRocketsTxtFld());
+            PopulationArray.setMaxRokets(optionPane.getMaxRocketsTxtFld());
         }catch (NumberFormatExeptionInt e){
-            Population.setMaxRokets(100);
+//            Population.setMaxRokets(100);
+            PopulationArray.setMaxRokets(100);
         }
 
         try {
