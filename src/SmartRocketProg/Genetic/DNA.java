@@ -32,7 +32,6 @@ public class DNA {
         for (int i = 0; i < DNA.dnaLength; i++) {
             genes[i] = new Vector2D(1);
             genes[i].limit(0.2);
-
         }
     }
 
