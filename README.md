@@ -1,3 +1,3 @@
 # SmartRockets
 
-Das ist eine Implementation eines genetischen Algoritmuses.
+Das ist eine Implementation eines genetischen Algorithmus.
